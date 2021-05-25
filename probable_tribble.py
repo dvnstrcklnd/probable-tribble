@@ -23,12 +23,12 @@ def get_argument_parser():
 
     subparsers = parser.add_subparsers(title="subcommands")
 
-    parser_count_over_under = subparsers.add_parser("count-over-under")
-    parser_count_over_under.add_argument('-l', '--list', nargs='+',
+    parser_count_above_below = subparsers.add_parser("count-above-below")
+    parser_count_above_below.add_argument('-l', '--list', nargs='+',
                                          help="the list of integers to be processed")
-    parser_count_over_under.add_argument('-v', '--value',
-                                         help="the value that items are over or under")
-    parser_count_over_under.set_defaults(func=do_count_over_under)
+    parser_count_above_below.add_argument('-v', '--value',
+                                         help="the value that items are above or below")
+    parser_count_above_below.set_defaults(func=do_count_above_below)
 
     parser_rotate_string = subparsers.add_parser("rotate-string")
     parser_rotate_string.add_argument('-s','--string',
@@ -39,13 +39,23 @@ def get_argument_parser():
 
     return parser
 
-def do_count_over_under(args):
-    print("count_over_under")
-    print(args.list)
-    print(args.value)
+def do_count_above_below(args):
+    below, above = count_above_below(args.list, args.value)
+    print("above: {}, below: {}.".format(above, below))
+
+def count_above_below(lst, val):
+    below = 0
+    above = 0
+    for i in lst:
+        if i < val:
+            below += 1
+        elif i > val:
+            above += 1
+
+    return (below, above)
 
 def do_rotate_string(args):
-    rotate_string(args.string, args.number)
+    print(rotate_string(args.string, args.number))
 
 def rotate_string(string, n):
     if n > len(string):
