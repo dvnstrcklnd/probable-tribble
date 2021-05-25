@@ -45,9 +45,12 @@ def do_count_over_under(args):
     print(args.value)
 
 def do_rotate_string(args):
-    print("rotate_string")
-    print(args.string)
-    print(args.number)
+    rotate_string(args.string, args.number)
+
+def rotate_string(string, n):
+    if n > len(string):
+        raise IndexError("You cannot rotate the string by more than its length!")
+    return string[-n:] + string[:-n]
 
 if __name__ == "__main__":
     main()
