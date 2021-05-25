@@ -6,8 +6,8 @@ __maintainer__ = "Devin Strickland"
 __email__ = "dvn.strcklnd@gmail.com"
 __copyright__ = "Copyright 2021, Devin Strickland"
 
-import sys
-import argparse
+from sys import stderr
+from argparse import ArgumentParser, Namespace
 
 def main():
     parser = get_argument_parser()
@@ -15,10 +15,10 @@ def main():
     try:
         args.func(args)
     except AttributeError:
-        parser.print_help(sys.stderr)
+        parser.print_help(stderr)
 
-def get_argument_parser():
-    parser = argparse.ArgumentParser(
+def get_argument_parser() -> ArgumentParser:
+    parser = ArgumentParser(
         description="Process lists and strings")
 
     subparsers = parser.add_subparsers(title="subcommands")
@@ -39,14 +39,14 @@ def get_argument_parser():
 
     return parser
 
-def do_count_above_below(args):
+def do_count_above_below(args: Namespace) -> None:
     print(formatted_count_above_below(args.list, args.value))
 
-def formatted_count_above_below(lst, val):
+def formatted_count_above_below(lst: list, val: int) -> str:
     below, above = count_above_below(lst, val)
     return "above: {}, below: {}.".format(above, below)
 
-def count_above_below(lst, val):
+def count_above_below(lst: list, val: int) -> tuple:
     below = 0
     above = 0
     for i in lst:
@@ -57,10 +57,10 @@ def count_above_below(lst, val):
 
     return (below, above)
 
-def do_rotate_string(args):
+def do_rotate_string(args: Namespace) -> None:
     print(rotate_string(args.string, args.number))
 
-def rotate_string(string, n):
+def rotate_string(string: str, n: int) -> str:
     if abs(n) > len(string):
         raise IndexError("You cannot rotate the string by more than its length!")
     return string[-n:] + string[:-n]
