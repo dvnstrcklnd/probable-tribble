@@ -40,8 +40,11 @@ def get_argument_parser():
     return parser
 
 def do_count_above_below(args):
-    below, above = count_above_below(args.list, args.value)
-    print("above: {}, below: {}.".format(above, below))
+    print(formatted_count_above_below(args.list, args.value))
+
+def formatted_count_above_below(lst, val):
+    below, above = count_above_below(lst, val)
+    return "above: {}, below: {}.".format(above, below)
 
 def count_above_below(lst, val):
     below = 0

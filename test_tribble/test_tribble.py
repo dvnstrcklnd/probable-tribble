@@ -1,7 +1,8 @@
 import pytest
 
 from probable_tribble import (rotate_string,
-                              count_above_below)
+                              count_above_below,
+                              formatted_count_above_below)
 
 @pytest.mark.parametrize("string, number, expect", [
     ("MyString", 2, "ngMyStri"),
@@ -32,3 +33,10 @@ def test_count_above_below(lst, val, expect_below, expect_above):
     below, above = count_above_below(lst, val)
     assert below == expect_below
     assert above == expect_above
+
+@pytest.mark.parametrize("lst, val, expect", [
+    ([1,2,3,4,5], 2, "above: 3, below: 1.")
+])
+def test_formatted_count_above_below(lst, val, expect):
+    output = formatted_count_above_below(lst, val)
+    assert output == expect
