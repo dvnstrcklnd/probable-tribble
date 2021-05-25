@@ -14,7 +14,8 @@ def test_rotate_string(string, number, expect):
     assert output == expect
 
 @pytest.mark.parametrize("string, number", [
-    ("Foo", 4)
+    ("Foo", 4),
+    ("Foo", -4)
 ])
 def test_rotate_string_error(string, number):
     with pytest.raises(IndexError):

@@ -58,7 +58,7 @@ def do_rotate_string(args):
     print(rotate_string(args.string, args.number))
 
 def rotate_string(string, n):
-    if n > len(string):
+    if abs(n) > len(string):
         raise IndexError("You cannot rotate the string by more than its length!")
     return string[-n:] + string[:-n]
 
