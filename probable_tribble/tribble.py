@@ -8,6 +8,7 @@ __copyright__ = "Copyright 2021, Devin Strickland"
 
 from sys import stderr
 from argparse import ArgumentParser, Namespace
+from re import findall
 
 def main():
     """
@@ -56,7 +57,9 @@ def do_count_above_below(args: Namespace) -> None:
     Returns:
         None
     """
-    print(formatted_count_above_below(args.list, args.value))
+    list = [int(i) for i in findall(r"\d+", str(args.list))]
+    value = int(args.value)
+    print(formatted_count_above_below(list, value))
 
 def formatted_count_above_below(lst: list, val: int) -> str:
     """
@@ -107,7 +110,9 @@ def do_rotate_string(args: Namespace) -> None:
     Returns:
         None
     """
-    print(rotate_string(args.string, args.number))
+    string = str(args.string)
+    number = int(args.number)
+    print(rotate_string(string, number))
 
 def rotate_string(string: str, n: int) -> str:
     """

@@ -1,8 +1,8 @@
 import pytest
 
-from probable_tribble import (rotate_string,
-                              count_above_below,
-                              formatted_count_above_below)
+from probable_tribble.tribble import (rotate_string,
+                                      count_above_below,
+                                      formatted_count_above_below)
 
 @pytest.mark.parametrize("string, number, expect", [
     ("MyString", 2, "ngMyStri"),
