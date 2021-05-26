@@ -8,7 +8,7 @@ __copyright__ = "Copyright 2021, Devin Strickland"
 
 from sys import stderr
 from argparse import ArgumentParser, Namespace
-from re import findall
+from re import search, findall
 
 def main():
     """
@@ -57,6 +57,10 @@ def do_count_above_below(args: Namespace) -> None:
     Returns:
         None
     """
+    if search(r"\d+\.", str(args.list)):
+        print("This function accepts only lists of integers.")
+        return
+
     list = [int(i) for i in findall(r"\d+", str(args.list))]
     value = int(args.value)
     print(formatted_count_above_below(list, value))
