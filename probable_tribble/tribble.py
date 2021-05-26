@@ -57,7 +57,7 @@ def do_count_above_below(args: Namespace) -> None:
     Returns:
         None
     """
-    if search(r"\d+\.", str(args.list)):
+    if search(r"\d*\.\d*", str(args.list)):
         print("This function accepts only lists of integers.")
         return
 
