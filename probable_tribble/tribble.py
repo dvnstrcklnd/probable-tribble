@@ -116,7 +116,11 @@ def do_rotate_string(args: Namespace) -> None:
     """
     string = str(args.string)
     number = int(args.number)
-    print(rotate_string(string, number))
+
+    try:
+        print(rotate_string(string, number))
+    except IndexError as err:
+        print(err)
 
 def rotate_string(string: str, n: int) -> str:
     """
